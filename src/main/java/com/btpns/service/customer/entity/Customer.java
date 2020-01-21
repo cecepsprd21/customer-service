@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,22 +18,27 @@ public class Customer {
   @Column(unique = true)
   private int customer_no;
 
-  @NotNull @Size(min = 16)
+  @NotNull(message = "Customer_nik can't be null")
+  @Size(min = 16)
   @Column(name = "customer_nik", unique = true)
+  @Pattern(regexp="^(0|[1-9][0-9]*)$")
   private String customer_nik;
 
   @Column(name = "name", unique = true)
-  @NotNull @Size(min = 2, max = 50)
+  @NotNull(message = "Name can't be null")
+  @Size(min = 2, max = 50)
   private String name;
 
   @Column(unique = true)
-  @NotNull @Email @Size(max = 50)
+  @NotNull(message = "Email can't be null")
+  @Email @Size(max = 50)
   private String email;
 
-  @NotNull
+  @NotNull(message = "Address can't be null")
   private String address;
 
   @Column(unique = true)
+  @Pattern(regexp="^(0|[1-9][0-9]*)$")
   @NotNull @Size(min = 11, max = 13)
   private String phone;
 
@@ -53,11 +59,11 @@ public class Customer {
     this.customer_no = customer_no;
   }
 
-  public String getCo_nik() {
+  public String getCustomer_nik() {
     return customer_nik;
   }
 
-  public void setCo_nik(String co_nik) {
+  public void setCustomer_nik(String co_nik) {
     this.customer_nik = co_nik;
   }
 
