@@ -13,23 +13,22 @@ public class Customer {
   @Id
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
+  @Column(name ="id")
   private String id;
 
-  @Column(unique = true)
+  @Column(name = "customer_no")
   private int customer_no;
 
   @NotNull(message = "Customer_nik can't be null")
-  @Size(min = 16)
-  @Column(name = "customer_nik", unique = true)
-  @Pattern(regexp="^(0|[1-9][0-9]*)$")
+  @Size(min = 16, message = "Customer nik min 16")
+  @Pattern(regexp="^(0|[1-9][0-9]*)$", message = "Customer_nik must be a number")
   private String customer_nik;
 
-  @Column(name = "name", unique = true)
+  @Column(name = "name")
   @NotNull(message = "Name can't be null")
   @Size(min = 2, max = 50)
   private String name;
 
-  @Column(unique = true)
   @NotNull(message = "Email can't be null")
   @Email @Size(max = 50)
   private String email;
@@ -37,9 +36,9 @@ public class Customer {
   @NotNull(message = "Address can't be null")
   private String address;
 
-  @Column(unique = true)
-  @Pattern(regexp="^(0|[1-9][0-9]*)$")
-  @NotNull @Size(min = 11, max = 13)
+  @Pattern(regexp="^(0|[1-9][0-9]*)$", message = "Phone must be a number")
+  @NotNull(message = "Phone can't be null")
+  @Size(min = 10, max = 12)
   private String phone;
 
   //GETTER SETTER
@@ -98,4 +97,5 @@ public class Customer {
   public void setPhone(String phone) {
     this.phone = phone;
   }
+
 }

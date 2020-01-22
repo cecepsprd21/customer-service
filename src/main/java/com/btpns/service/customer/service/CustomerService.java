@@ -1,7 +1,7 @@
 package com.btpns.service.customer.service;
 
 import com.btpns.service.customer.entity.Customer;
-
+import javassist.NotFoundException;
 import java.util.List;
 
 public interface CustomerService {
@@ -12,7 +12,7 @@ public interface CustomerService {
 
   Customer create(Customer customer);
 
-  Customer update(String id, Customer customer);
+  Customer update(String id, Customer customer) throws NotFoundException;
 
   void delete(String id);
 

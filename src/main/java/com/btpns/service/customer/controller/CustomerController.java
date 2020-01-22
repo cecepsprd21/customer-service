@@ -2,9 +2,9 @@ package com.btpns.service.customer.controller;
 
 import com.btpns.service.customer.entity.Customer;
 import com.btpns.service.customer.service.CustomerServiceImpl;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CustomerController {
 
   @GetMapping(value = "/customer/{id}")
   @ResponseBody
-  public Customer findById(@PathVariable(value = "id") String id){
+  public Customer findCustomerId(@PathVariable(value = "id") String id){
     return customerService.findById(id);
   }
 
@@ -29,12 +29,12 @@ public class CustomerController {
   @PostMapping(value = "/customer")
   @ResponseBody
   public Customer create(@Valid @RequestBody Customer customer){
-    return customerService.create(customer);
+     return customerService.create(customer);
   }
 
   @PutMapping(value = "/customer/{id}")
   @ResponseBody
-  public Customer update(@PathVariable(value = "id")String id, @Valid @RequestBody Customer customer){
+  public Customer update(@PathVariable(value = "id")String id, @Valid @RequestBody Customer customer) throws NotFoundException {
     return customerService.update(id,customer);
   }
 
