@@ -1,11 +1,14 @@
 package com.btpns.service.customer.response;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
 public class ResponseDao<T> {
   private int code;
   private String status;
   private String message;
   private T data;
-
 
 
   // SETTER GETTER
