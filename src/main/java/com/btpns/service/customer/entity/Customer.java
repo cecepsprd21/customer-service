@@ -1,15 +1,16 @@
 package com.btpns.service.customer.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "customer")
-public class Customer {
+@Table(name="customer2")
+public class Customer{
   @Id
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -17,11 +18,11 @@ public class Customer {
   private String id;
 
   @Column(name = "customer_no")
-  private int customer_no;
+  private String customer_no;
 
-  @NotNull(message = "Customer_nik can't be null")
-  @Size(min = 16, message = "Customer nik min 16")
-  @Pattern(regexp="^(0|[1-9][0-9]*)$", message = "Customer_nik must be a number")
+  @NotNull(message = "CO nik can't be null")
+  @Size(min = 8, max = 8, message = "customer nik must have 8 digit")
+  @Pattern(regexp="^(0|[1-9][0-9]*)$", message = "CO nik must be a number")
   private String customer_nik;
 
   @Column(name = "name")
@@ -31,6 +32,7 @@ public class Customer {
 
   @NotNull(message = "Email can't be null")
   @Email @Size(max = 50)
+  @Column(name = "email", unique = true, nullable = false)
   private String email;
 
   @NotNull(message = "Address can't be null")
@@ -39,6 +41,7 @@ public class Customer {
   @Pattern(regexp="^(0|[1-9][0-9]*)$", message = "Phone must be a number")
   @NotNull(message = "Phone can't be null")
   @Size(min = 10, max = 12)
+  @Column(name = "phone", unique = true, nullable = false)
   private String phone;
 
   //GETTER SETTER
@@ -50,11 +53,11 @@ public class Customer {
     this.id = id;
   }
 
-  public int getCustomer_no() {
+  public String getCustomer_no() {
     return customer_no;
   }
 
-  public void setCustomer_no(int customer_no) {
+  public void setCustomer_no(String customer_no) {
     this.customer_no = customer_no;
   }
 
@@ -62,8 +65,8 @@ public class Customer {
     return customer_nik;
   }
 
-  public void setCustomer_nik(String co_nik) {
-    this.customer_nik = co_nik;
+  public void setCustomer_nik(String customer_nik) {
+    this.customer_nik = customer_nik;
   }
 
   public String getName() {
@@ -97,5 +100,4 @@ public class Customer {
   public void setPhone(String phone) {
     this.phone = phone;
   }
-
 }

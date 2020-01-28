@@ -10,7 +10,6 @@ public class ResponseDao<T> {
   private String message;
   private T data;
 
-
   // SETTER GETTER
   public int getCode() {
     return code;

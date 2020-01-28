@@ -1,5 +1,6 @@
 package com.btpns.service.customer;
 
+import com.btpns.service.customer.entity.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CustomerApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void findAll() throws Exception {
+		Customer customer = new Customer();
 	}
-
 }

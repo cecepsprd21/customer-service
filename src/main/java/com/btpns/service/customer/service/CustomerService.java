@@ -3,20 +3,19 @@ package com.btpns.service.customer.service;
 import com.btpns.service.customer.entity.Customer;
 import com.btpns.service.customer.response.ResponseDao;
 import javassist.NotFoundException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface CustomerService {
 
-  List<Customer> findByName(String name);
+  ResponseEntity<ResponseDao> findByName(String name);
 
-  ResponseEntity<ResponseDao> findAll();
+  ResponseEntity<ResponseDao> customerPagination(Pageable pageable);
 
-  ResponseEntity<ResponseDao> findAllPagination(Pageable pageable);
+  ResponseEntity<ResponseDao> findById(String id);
 
-  ResponseEntity<ResponseDao> findById(String id) throws NotFoundException;
+  ResponseEntity<ResponseDao> findByNik(String nik);
 
   ResponseEntity<ResponseDao> create(Customer customer);
 
